@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Info extends StatelessWidget {
-  static const _url = "http://www.odonto.unam.mx/";
+  static const _url =
+      "http://www.odonto.unam.mx/sites/default/files/inline-files/Odontolog%C3%ADa%20Preventiva%202019-2020_0.pdf";
   @override
   Widget build(BuildContext context) {
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: 'fWqhn02KDmw',
+      initialVideoId: 'NpEaa2P7qZI',
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text("Materia A"),
+        title: Text("Odontología preventiva"),
       ),
       body: Center(
         child: Column(
@@ -25,7 +26,14 @@ class Info extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(5),
-              child: Text("Informacion que describe chido la materia"),
+              child: Text(
+                  """La asignatura de Odontología Preventiva se basa en prevenir la aparición de
+enfermedades orales y a disminuir la destrucción de las estructuras involucradas si
+la enfermedad ya está establecida, por lo que este curso, se enfoca a brindar al
+estudiante los conocimientos necesarios para realizar actividades de fomento a la
+salud y protección específica. Las actividades a realizar son propias del nivel de
+prevención primaria, aunado al conocimiento básico para el diagnóstico precoz de
+las enfermedades tales como, caries dental, gingivitis/periodontitis. 1"""),
             ),
             Padding(
               padding: EdgeInsets.all(5),

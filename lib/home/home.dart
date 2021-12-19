@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
         children: <Widget>[
           ElevatedButton(
             onPressed: () => Navigator.pushNamed(context, '/materia'),
-            child: Text("Materia A"),
+            child: Text("Odontología preventiva"),
           ),
           ElevatedButton(
             onPressed: () {},

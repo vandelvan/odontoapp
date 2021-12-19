@@ -12,6 +12,7 @@ import 'package:odontoapp/home/home.dart';
 import 'package:odontoapp/materias/materia.dart';
 import 'package:odontoapp/materias/info.dart';
 import 'package:odontoapp/login/login.dart';
+import 'package:odontoapp/materias/quiz.dart';
 
 void main() {
   runApp(OdontoApp());
@@ -29,6 +30,7 @@ class OdontoApp extends StatelessWidget {
         '/info': (BuildContext context) => Info(),
         '/protocolo': (BuildContext context) => Protocolo(),
         '/videos': (BuildContext context) => Videos(),
+        '/quiz': (BuildContext context) => Quiz(),
         '/conceptos': (BuildContext context) => Conceptos(),
         '/definicion': (BuildContext context) => Definicion(),
         '/perfil': (BuildContext context) => Perfil(),

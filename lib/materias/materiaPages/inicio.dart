@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+const _url =
+    "http://www.odonto.unam.mx/sites/default/files/inline-files/Odontolog%C3%ADa%20Preventiva%202019-2020_0.pdf";
+void _launchURL() async =>
+    await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 Padding inicio(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(15),
@@ -23,13 +28,16 @@ Padding inicio(BuildContext context) {
           onTap: () => Navigator.pushNamed(context, '/videos'),
         ),
         ListTile(
-          title: Text("Agenda"),
-          leading: Icon(Icons.calendar_today),
+          title: Text("Quiz"),
+          leading: Icon(Icons.quiz),
+          onTap: () => Navigator.pushNamed(context, '/quiz'),
         ),
         ListTile(
-          title: Text("Protocolo Covid-19"),
-          leading: Icon(Icons.warning),
-          onTap: () => Navigator.pushNamed(context, '/protocolo'),
+          title: Text("Programa de estudios"),
+          leading: Icon(
+            Icons.table_chart,
+          ),
+          onTap: () => _launchURL(),
         ),
       ],
     ),

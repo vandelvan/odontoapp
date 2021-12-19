@@ -24,7 +24,7 @@ class Menu extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, '/apoyo'),
           ),
           ListTile(
-            title: Text("Asignaturas"),
+            title: Text("Tutorial"),
             onTap: () => Navigator.pushReplacementNamed(context, '/home'),
           ),
           ListTile(

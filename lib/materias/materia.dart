@@ -23,7 +23,7 @@ class _MateriaState extends State<Materia> {
 
   AppBar buildAppBar(BuildContext context) {
     return new AppBar(
-      title: new Text('Materia A'),
+      title: new Text('Odontología preventiva'),
       actions: [searchBar.getSearchAction(context)],
     );
   }
