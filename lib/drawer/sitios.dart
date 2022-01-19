@@ -16,6 +16,9 @@ class Sitios extends StatelessWidget {
           children: [
             ListTile(
               title: Text("COVID 19"),
+              leading: Image(
+                image: AssetImage('assets/images/covid.jpg'),
+              ),
               onTap: () => _launchURL("https://coronavirus.gob.mx/"),
             ),
             ListTile(

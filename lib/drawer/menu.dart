@@ -1,24 +1,28 @@
+import 'dart:io';
+
+import 'package:OdontoUNAM/user.dart';
 import 'package:flutter/material.dart';
-import 'package:odontoapp/drawer/contacto.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:OdontoUNAM/drawer/contacto.dart';
 
 class Menu extends StatelessWidget {
-  static const _url =
-      "http://www.odonto.unam.mx/index.php/es/secretaria-de-servicios-escolares-licenciatura";
   @override
   Widget build(BuildContext context) {
+    final _user = ModalRoute.of(context).settings.arguments as User;
     return Drawer(
       child: ListView(
         children: [
           ListTile(),
           Image(
-            image: AssetImage('assets/images/facodo-logo.png'),
+            image: _user.pic.length > 9
+                ? FileImage(File(_user.pic))
+                : AssetImage('assets/images/' + _user.pic),
             height: 150,
           ),
           Divider(),
           ListTile(
             title: Text("Mi perfil"),
-            onTap: () => Navigator.pushNamed(context, '/perfil'),
+            onTap: () =>
+                Navigator.pushNamed(context, '/perfil', arguments: _user),
           ),
           ListTile(
             title: Text("Alumnos"),
@@ -29,15 +33,7 @@ class Menu extends StatelessWidget {
             onTap: () => Navigator.pushReplacementNamed(context, '/home'),
           ),
           ListTile(
-            title: Text("Servicios escolares"),
-            onTap: _launchURL,
-          ),
-          ListTile(
-            title: Text("Apoyo Escolar"),
-            onTap: () => Navigator.pushNamed(context, '/escolar'),
-          ),
-          ListTile(
-            title: Text("Sitios de interes"),
+            title: Text("Sitios de interés"),
             onTap: () => Navigator.pushNamed(context, '/sitios'),
           ),
           ListTile(
@@ -54,8 +50,4 @@ class Menu extends StatelessWidget {
       ),
     );
   }
-
-  void _launchURL() async => await canLaunch(_url)
-      ? await launch(_url)
-      : throw 'Could not launch $_url';
 }

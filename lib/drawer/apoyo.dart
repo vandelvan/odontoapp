@@ -15,7 +15,8 @@ class Apoyo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ListTile(
-              title: Text("Página de la Facultad de odontología:"),
+              title: Text(
+                  "Página de la Facultad de odontología: Sitio oficial de la Facultad de Odontología de la UNAM."),
               leading: Image(
                 image: AssetImage('assets/images/facodo-logo.png'),
               ),

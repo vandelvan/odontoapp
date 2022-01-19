@@ -1,5 +1,8 @@
+import 'package:OdontoUNAM/user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'dart:convert';
 
 class Login extends StatefulWidget {
   @override
@@ -7,46 +10,62 @@ class Login extends StatefulWidget {
 }
 
 class _State extends State<Login> {
+  List<User> users = [];
+  User user = User("", "", "", false, false);
+  Future<bool> readJson() async {
+    final String response = await rootBundle.loadString('assets/users.json');
+    final data = await json.decode(response);
+    for (var i in data) {
+      users.add(User.fromJson(i));
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FlutterLogin(
-      title: "Odontología",
-      logo: "assets/images/facodo-logo.png",
-      messages: _configTextos(),
-      onLogin: (LoginData data) {
-        return Future.delayed(Duration(milliseconds: 500)).then((_) {
-          if ((data.name == "312020589" && data.password == "13081995") ||
-              (data.name == "309298979" && data.password == "24111991")) {
-            Navigator.pushReplacementNamed(context, '/home');
-            return null;
-          } else {
-            return "Usuario Invalido";
-          }
+    return FutureBuilder(
+        future: readJson(),
+        builder: (context, snapshot) {
+          return FlutterLogin(
+            title: "Odontología",
+            logo: "assets/images/facodo-logo.png",
+            messages: _configTextos(),
+            onLogin: (LoginData data) {
+              return Future.delayed(Duration(milliseconds: 500)).then((_) {
+                for (var u in users) {
+                  if (data.name == u.username && data.password == u.pass) {
+                    Navigator.pushReplacementNamed(context, '/home',
+                        arguments: u);
+                    return null;
+                  }
+                }
+                return "Datos Incorrectos";
+              });
+            },
+            emailValidator: (value) {
+              return null;
+            },
+            passwordValidator: (value) {
+              return null;
+            },
+            onRecoverPassword: (String email) {
+              return null;
+            },
+            onSignup: (LoginData data) {
+              return null;
+            },
+          );
         });
-      },
-      emailValidator: (value) {
-        return null;
-      },
-      passwordValidator: (value) {
-        return null;
-      },
-      onRecoverPassword: (String email) {
-        return null;
-      },
-      onSignup: (LoginData data) {
-        return null;
-      },
-    );
   }
 
   LoginMessages _configTextos() {
     return LoginMessages(
-      usernameHint: "Numero de cuenta",
+      usernameHint: "Número de cuenta",
       passwordHint: "Contraseña",
       confirmPasswordHint: "Confirmar contraseña",
       loginButton: "Entrar",
       signupButton: "Registrarse",
-      forgotPasswordButton: "Olvide mi contraseña",
+      forgotPasswordButton: "Olvidé mi contraseña",
       recoverPasswordButton: "Recuperar contraseña",
       goBackButton: "Volver",
       confirmPasswordError: "No coincide",

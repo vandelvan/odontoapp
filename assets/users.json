@@ -1,0 +1,23 @@
+[
+  {
+    "username": "312020589",
+    "pass": "13081995",
+    "pic": "user1.png",
+    "favc": false,
+    "favv": false
+  },
+  {
+    "username": "309298979",
+    "pass": "309298979",
+    "pic": "user2.png",
+    "favc": false,
+    "favv": false
+  },
+  {
+    "username": "admin",
+    "pass": "123",
+    "pic": "user2.png",
+    "favc": false,
+    "favv": false
+  }
+]

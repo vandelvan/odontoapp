@@ -19,7 +19,7 @@
 </queries>
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="odontoapp"
+        android:label="OdontoUNAM"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
