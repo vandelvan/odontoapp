@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Sitios extends StatelessWidget {
-  static const _url = "http://www.odonto.unam.mx/index.php";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,32 +15,32 @@ class Sitios extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ListTile(
-              title: Text("Breve Descripcion"),
-              leading: Image(
-                image: AssetImage('assets/images/facodo-logo.png'),
-              ),
-              onTap: _launchURL,
+              title: Text("COVID 19"),
+              onTap: () => _launchURL("https://coronavirus.gob.mx/"),
             ),
             ListTile(
-              title: Text("Breve Descripcion"),
+              title: Text(
+                  "PLM: Herramientas prácticas y útiles para el ejercicio diario de la medicina en México, contiene información sobre medicamentos, sustancias e interacciones."),
               leading: Image(
-                image: AssetImage('assets/images/facodo-logo.png'),
+                image: AssetImage('assets/images/plm.png'),
               ),
-              onTap: _launchURL,
+              onTap: () => _launchURL("https://www.medicamentosplm.com/"),
             ),
             ListTile(
-              title: Text("Breve Descripcion"),
+              title: Text(
+                  "Secretaría de salud: Página oficial de la secretaría de salud."),
               leading: Image(
-                image: AssetImage('assets/images/facodo-logo.png'),
+                image: AssetImage('assets/images/salud.jpg'),
               ),
-              onTap: _launchURL,
+              onTap: () => _launchURL("https://www.gob.mx/salud"),
             ),
             ListTile(
-              title: Text("Breve Descripcion"),
+              title: Text(
+                  "Asociación dental mexicana: Página oficial de la asociación dental mexicana."),
               leading: Image(
-                image: AssetImage('assets/images/facodo-logo.png'),
+                image: AssetImage('assets/images/as.jpg'),
               ),
-              onTap: _launchURL,
+              onTap: () => _launchURL("https://www.adm.org.mx/ "),
             ),
           ],
         ),
@@ -50,7 +48,7 @@ class Sitios extends StatelessWidget {
     );
   }
 
-  void _launchURL() async => await canLaunch(_url)
+  void _launchURL(_url) async => await canLaunch(_url)
       ? await launch(_url)
       : throw 'Could not launch $_url';
 }

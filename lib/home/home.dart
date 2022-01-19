@@ -15,9 +15,21 @@ class Home extends StatelessWidget {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         children: <Widget>[
-          ElevatedButton(
-            onPressed: () => Navigator.pushNamed(context, '/materia'),
-            child: Text("Odontología preventiva"),
+          GestureDetector(
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/odontoprev.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Text(
+                "Odontología preventiva",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            onTap: () => Navigator.pushNamed(context, '/materia'),
           ),
           ElevatedButton(
             onPressed: () {},

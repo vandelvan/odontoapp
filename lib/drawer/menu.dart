@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odontoapp/drawer/contacto.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {
@@ -20,7 +21,7 @@ class Menu extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, '/perfil'),
           ),
           ListTile(
-            title: Text("Apoyo al estudiante"),
+            title: Text("Alumnos"),
             onTap: () => Navigator.pushNamed(context, '/apoyo'),
           ),
           ListTile(
@@ -41,6 +42,13 @@ class Menu extends StatelessWidget {
           ),
           ListTile(
             title: Text("Contacto"),
+            onTap: () => showDialog(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                content: Contacto(),
+                scrollable: true,
+              ),
+            ),
           ),
         ],
       ),

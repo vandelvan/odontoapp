@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:odontoapp/drawer/menu.dart';
 import 'package:odontoapp/materias/materiaPages/inicio.dart';
 import 'package:odontoapp/materias/materiaPages/favs.dart';
-import 'package:flutter_search_bar/flutter_search_bar.dart';
 
 class Materia extends StatefulWidget {
   @override
@@ -18,33 +17,15 @@ class _MateriaState extends State<Materia> {
     });
   }
 
-  SearchBar searchBar;
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   AppBar buildAppBar(BuildContext context) {
     return new AppBar(
       title: new Text('Odontología preventiva'),
-      actions: [searchBar.getSearchAction(context)],
+      actions: [
+        IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(Icons.arrow_back))
+      ],
     );
-  }
-
-  void onSubmitted(String value) {
-    setState(() => _scaffoldKey.currentState
-        .showSnackBar(new SnackBar(content: new Text('escribiste $value!'))));
-  }
-
-  _MateriaState() {
-    searchBar = new SearchBar(
-        inBar: false,
-        buildDefaultAppBar: buildAppBar,
-        setState: setState,
-        onSubmitted: onSubmitted,
-        onCleared: () {
-          print("limpio");
-        },
-        onClosed: () {
-          print("cerrado");
-        });
   }
 
   @override
@@ -56,7 +37,6 @@ class _MateriaState extends State<Materia> {
     return Scaffold(
       appBar: buildAppBar(context),
       drawer: Menu(),
-      key: _scaffoldKey,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

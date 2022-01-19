@@ -7,7 +7,6 @@ import 'package:odontoapp/materias/conceptos.dart';
 import 'package:odontoapp/materias/definicion.dart';
 import 'package:odontoapp/materias/protocolo.dart';
 import 'package:odontoapp/materias/videos.dart';
-import 'package:odontoapp/splash.dart';
 import 'package:odontoapp/home/home.dart';
 import 'package:odontoapp/materias/materia.dart';
 import 'package:odontoapp/materias/info.dart';
@@ -22,9 +21,8 @@ class OdontoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      home: SplashScreen(),
+      home: Login(),
       routes: <String, WidgetBuilder>{
-        '/login': (BuildContext context) => Login(),
         '/home': (BuildContext context) => Home(),
         '/materia': (BuildContext context) => Materia(),
         '/info': (BuildContext context) => Info(),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class Conceptos extends StatelessWidget {
   @override
@@ -19,10 +18,6 @@ class Conceptos extends StatelessWidget {
                   "Pasos para la aplicación de selladores de fosetas y fisuras"),
               leading: Image(
                 image: AssetImage('assets/images/selladores.jpg'),
-              ),
-              trailing: IconButton(
-                icon: Icon(Icons.favorite_border),
-                onPressed: () => null,
               ),
               onTap: () => Navigator.pushNamed(context, '/definicion'),
             ),

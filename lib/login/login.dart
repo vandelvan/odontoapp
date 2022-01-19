@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: "Odontologia",
+      title: "Odontología",
       logo: "assets/images/facodo-logo.png",
       messages: _configTextos(),
-      onLogin: (LoginData) {
-        Navigator.pushReplacementNamed(context, '/home');
+      onLogin: (LoginData data) {
+        return Future.delayed(Duration(milliseconds: 500)).then((_) {
+          if ((data.name == "312020589" && data.password == "13081995") ||
+              (data.name == "309298979" && data.password == "24111991")) {
+            Navigator.pushReplacementNamed(context, '/home');
+            return null;
+          } else {
+            return "Usuario Invalido";
+          }
+        });
       },
       emailValidator: (value) {
         return null;
@@ -17,8 +30,12 @@ class Login extends StatelessWidget {
       passwordValidator: (value) {
         return null;
       },
-      onRecoverPassword: (String) {},
-      onSignup: (LoginData) {},
+      onRecoverPassword: (String email) {
+        return null;
+      },
+      onSignup: (LoginData data) {
+        return null;
+      },
     );
   }
 
