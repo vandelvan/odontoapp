@@ -4,10 +4,21 @@ import 'package:OdontoUNAM/user.dart';
 import 'package:flutter/material.dart';
 import 'package:OdontoUNAM/drawer/contacto.dart';
 
-class Menu extends StatelessWidget {
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+class Menu extends StatefulWidget {
+  @override
+  _MenuState createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     final _user = ModalRoute.of(context).settings.arguments as User;
+    YoutubePlayerController _controller = YoutubePlayerController(
+      initialVideoId: 'IUKAOhmlf8s',
+      flags: YoutubePlayerFlags(autoPlay: false),
+    );
     return Drawer(
       child: ListView(
         children: [
@@ -30,7 +41,10 @@ class Menu extends StatelessWidget {
           ),
           ListTile(
             title: Text("Tutorial"),
-            onTap: () => Navigator.pushReplacementNamed(context, '/home'),
+            onTap: () => showDialog(
+              context: context,
+              builder: (BuildContext context) => showVideo(_controller),
+            ),
           ),
           ListTile(
             title: Text("Sitios de interés"),
@@ -48,6 +62,17 @@ class Menu extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  SimpleDialog showVideo(YoutubePlayerController _controller) {
+    return SimpleDialog(
+      children: [
+        YoutubePlayer(
+          controller: _controller,
+          showVideoProgressIndicator: true,
+        ),
+      ],
     );
   }
 }

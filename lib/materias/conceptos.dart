@@ -9,7 +9,7 @@ class Conceptos extends StatefulWidget {
 
 class _ConceptosState extends State<Conceptos> {
   static const _url =
-      "http://www.odonto.unam.mx/sites/default/files/inline-files/O_preventiva.pdf";
+      "https://drive.google.com/file/d/1dwDfXHWIOfUiB1jzVXB0o8Zg4g7LEMYI/view?usp=sharing";
   @override
   Widget build(BuildContext context) {
     final _user = ModalRoute.of(context).settings.arguments as User;

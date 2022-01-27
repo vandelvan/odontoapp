@@ -6,7 +6,7 @@ class Sitios extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sitios de interes"),
+        title: Text("Sitios de interés"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),

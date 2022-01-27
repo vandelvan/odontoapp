@@ -1,12 +1,10 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:OdontoUNAM/user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:OdontoUNAM/services/DatabaseHandler.dart';
 
 class Perfil extends StatefulWidget {
   @override
@@ -16,8 +14,14 @@ class Perfil extends StatefulWidget {
 class _PerfilState extends State<Perfil> {
   final ImagePicker _picker = ImagePicker();
   bool _cambiar = false;
+  DatabaseHandler handler;
+  final c = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    this.handler = DatabaseHandler();
+    this.handler.initializeDB().whenComplete(() async {
+      setState(() {});
+    });
     final _user = ModalRoute.of(context).settings.arguments as User;
     return Scaffold(
       appBar: AppBar(
@@ -56,6 +60,7 @@ class _PerfilState extends State<Perfil> {
                   final File newImage = await _image.copy(filePath);
                   setState(() {
                     _user.pic = filePath;
+                    handler.saveUser(_user);
                   });
                 },
               ),
@@ -71,18 +76,20 @@ class _PerfilState extends State<Perfil> {
                 child: Column(
                   children: [
                     TextField(
+                      controller: c,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: "Nueva contraseña",
                       ),
                     ),
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Confirmar contraseña",
-                      ),
-                    ),
-                    ElevatedButton(onPressed: null, child: Text("Cambiar"))
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _user.pass = c.text;
+                            handler.saveUser(_user);
+                          });
+                        },
+                        child: Text("Cambiar"))
                   ],
                 ),
               ),
@@ -92,16 +99,4 @@ class _PerfilState extends State<Perfil> {
       ),
     );
   }
-
-  // Future updateUser(User u) async {
-  //   List<User> users;
-  //   String response = await rootBundle.loadString('assets/users.json');
-  //   final data = await json.decode(response);
-  //   for (var i in data) {
-  //     users.add(User.fromJson(i));
-  //   }
-  //   users.firstWhere((user) => user.username == u.username).pic = u.pic;
-  //   users.firstWhere((user) => user.username == u.username).pass = u.pass;
-  //   jsonFile.writeAsStringSync(json.encode(users));
-  // }
 }

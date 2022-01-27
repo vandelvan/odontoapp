@@ -1,8 +1,9 @@
 import 'package:OdontoUNAM/user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_login/flutter_login.dart';
-import 'dart:convert';
+import 'dart:async';
+
+import 'package:OdontoUNAM/services/DatabaseHandler.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -12,20 +13,17 @@ class Login extends StatefulWidget {
 class _State extends State<Login> {
   List<User> users = [];
   User user = User("", "", "", false, false);
-  Future<bool> readJson() async {
-    final String response = await rootBundle.loadString('assets/users.json');
-    final data = await json.decode(response);
-    for (var i in data) {
-      users.add(User.fromJson(i));
-    }
-    return true;
-  }
-
+  DatabaseHandler handler;
   @override
   Widget build(BuildContext context) {
+    this.handler = DatabaseHandler();
+    this.handler.initializeDB().whenComplete(() async {
+      setState(() {});
+    });
     return FutureBuilder(
-        future: readJson(),
+        future: handler.retrieveUsers(),
         builder: (context, snapshot) {
+          users = snapshot.data;
           return FlutterLogin(
             title: "Odontología",
             logo: "assets/images/facodo-logo.png",
